@@ -58,9 +58,10 @@ def filetracking(request):
                     messages.error(
                         request, "File should not be greater than 10MB")
                     return redirect("/filetracking")
-
+                
+                form_remarks = request.POST.get('remarks')
                 extraJSON = {
-                    'remarks': request.POST.get('remarks'),
+                    'remarks':  form_remarks if form_remarks is not None else '',
                 }
 
                 File.objects.create(
